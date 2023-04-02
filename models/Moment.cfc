@@ -86,10 +86,18 @@ component accessors=true {
 	* Formatter
 	*/
 
-	public string function toDate(
-		string mask = "yyyy-mm-dd"
+	public string function toDate() {
+		return toString( "yyyy-mm-dd" );
+	}
+
+	public string function toString(
+		required string mask
 	) {
-		return DateFormat( variables.moment, arguments.mask );
+		return DateTimeFormat( variables.moment, arguments.mask );
+	}
+
+	public string function toObject() {
+		return variables.moment;
 	}
 
 	/**
