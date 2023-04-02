@@ -6,9 +6,7 @@ component {
 	this.description = "";
 	this.version     = "1.0.0";
 
-	this.entryPoint     = "cfmoment";
-	this.modelNamespace = "cfmoment";
-	this.cfmapping      = "cfmoment";
+	this.cfmapping = "cfmoment";
 
 	function configure() {
 
