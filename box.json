@@ -1,0 +1,23 @@
+{
+    "name":"CFMoment",
+    "version":"1.0.0",
+    "author":"Teon Ooi",
+    "shortDescription":"A ColdBox date module for parsing, validating, manipulating, and formatting date.",
+    "description":"A ColdBox date module for parsing, validating, manipulating, and formatting date.",
+    "homepage":"https://github.com/teonator/cfmoment",
+    "documentation":"https://github.com/teonator/cfmoment",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/teonator/cfmoment"
+    },
+    "slug":"cfmoment",
+    "type":"modules",
+    "location":"",
+    "dependencies":{},
+    "scripts":{},
+    "ignore":[
+        ".git/*",
+        ".gitignore",
+        ".twgit_features_subject"
+    ]
+}
