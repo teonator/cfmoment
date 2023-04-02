@@ -8,6 +8,8 @@ component {
 
 	this.cfmapping = "cfmoment";
 
+	this.applicationHelper = [ "helpers/Moment.cfm" ];
+
 	function configure() {
 
 	}
