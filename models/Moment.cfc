@@ -10,10 +10,6 @@ component accessors=true {
 		return this;
 	}
 
-	/**
-	* Alias
-	*/
-
 	public any function day(
 		numeric day
 	) {
@@ -33,7 +29,7 @@ component accessors=true {
 	}
 
 	/**
-	* Getter
+	* Get
 	*/
 
 	public numeric function getDay(
@@ -55,7 +51,7 @@ component accessors=true {
 	}
 
 	/**
-	* Setters
+	* Set
 	*/
 
 	public any function setDay(
@@ -83,7 +79,7 @@ component accessors=true {
 	}
 
 	/**
-	* Formatter
+	* Format
 	*/
 
 	public string function toDate() {
@@ -100,7 +96,7 @@ component accessors=true {
 		return variables.moment;
 	}
 
-	// Comparison
+	// Compare
 
 	public boolean function isSame(
 		required date dateTime
@@ -132,6 +128,86 @@ component accessors=true {
 	}
 
 	/**
+	* Difference
+	*/
+
+	public numeric function diffInDays(
+		  date    dateTime = Now()
+		, boolean absolute = true
+	) {
+		return _getDiff( argumentCollection=arguments, datePart="d" );
+	}
+
+	public numeric function diffInMonths(
+		  date    dateTime = Now()
+		, boolean absolute = true
+	) {
+		return _getDiff( argumentCollection=arguments, datePart="m" );
+	}
+
+	public numeric function diffInYears(
+		  date    dateTime = Now()
+		, boolean absolute = true
+	) {
+		return _getDiff( argumentCollection=arguments, datePart="yyyy" );
+	}
+
+	public string function diffForHuman(
+		  date    dateTime = Now()
+		, boolean absolute = true
+	) {
+		var past      = "";
+		var future    = "";
+		var diff      = 0;
+		var dateParts = [
+			  "yyyy" = "year"
+			, "m"    = "month"
+			, "w"    = "week"
+			, "d"    = "day"
+			, "h"    = "hour"
+			, "n"    = "minute"
+			, "s"    = "second"
+		];
+
+		if ( DateCompare( arguments.dateTime, Now() ) == 0 ) {
+			past   = "ago";
+			future = "from now";
+		} else {
+			past   = "before";
+			future = "after";
+		}
+
+		for ( var key in dateParts ) {
+			diff = DateDiff( key, arguments.dateTime, variables.moment );
+
+			if ( diff < 0 ) {
+				if ( arguments.absolute ) {
+					diff = Abs( diff );
+				}
+
+				return diff & " " & dateParts[ key ] & ( diff > 1 ? "s" : "" ) & " " & past;
+			}
+
+			if ( diff > 0 ) {
+				if ( arguments.absolute ) {
+					diff = Abs( diff );
+				}
+
+				return diff & " " & dateParts[ key ] & ( diff > 1 ? "s" : "" ) & " " & future;
+			}
+		}
+
+		return "now";
+	}
+
+	/**
+	* Utility
+	*/
+	public any function clone() {
+		return Duplicate( this );
+	}
+
+	/**
 	* Private
 	*/
 
@@ -150,6 +226,16 @@ component accessors=true {
 		, required numeric day
 	) {
 		return Min( arguments.day, DaysInMonth( CreateDate( arguments.year, arguments.month, 1 ) ) )
+	}
+
+	private numeric function _getDiff(
+		  required string   datePart
+		, required dateTime dateTime
+		, required boolean  absolute
+	) {
+		var count = DateDiff( arguments.datePart, arguments.dateTime, variables.moment );
+
+		return arguments.absolute ? Abs( count ) : count;
 	}
 
 }
