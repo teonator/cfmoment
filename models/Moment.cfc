@@ -100,6 +100,37 @@ component accessors=true {
 		return variables.moment;
 	}
 
+	// Comparison
+
+	public boolean function isSame(
+		required date dateTime
+	) {
+		return DateCompare( variables.moment, arguments.dateTime ) == 0;
+	}
+
+	public boolean function isAfter(
+		required date dateTime
+	) {
+		return DateCompare( variables.moment, arguments.dateTime ) > 0;
+	}
+
+	public boolean function isBefore(
+		required date dateTime
+	) {
+		return DateCompare( variables.moment, arguments.dateTime ) < 0;
+	}
+
+	public boolean function isBetween(
+		  required date startDateTime
+		, required date endDateTime
+	) {
+		return isAfter( arguments.startDateTime ) && isBefore( arguments.endDateTime );
+	}
+
+	public boolean function isLeapYear() {
+		return isLeapYear( variables.moment );
+	}
+
 	/**
 	* Private
 	*/
