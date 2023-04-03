@@ -160,6 +160,18 @@ component accessors=true {
 		return DateCompare( variables.moment, arguments.dateTime ) < 0;
 	}
 
+	public boolean function isSameOrAfter(
+		required date dateTime
+	) {
+		return isSame( arguments.dateTime ) || isAfter( arguments.dateTime );
+	}
+
+	public boolean function isSameOrBefore(
+		required date dateTime
+	) {
+		return isSame( arguments.dateTime ) || isBefore( arguments.dateTime );
+	}
+
 	public boolean function isBetween(
 		  required date startDateTime
 		, required date endDateTime
