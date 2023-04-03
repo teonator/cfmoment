@@ -79,20 +79,64 @@ component accessors=true {
 	}
 
 	/**
+	* Add
+	*/
+
+	public any function addDays(
+		required numeric days
+	) {
+		return _setMoment( datePart="d", number=arguments.days );
+	}
+
+	public any function addMonths(
+		required numeric months
+	) {
+		return _setMoment( datePart="m", number=arguments.months );
+	}
+
+	public any function addYears(
+		required numeric years
+	) {
+		return _setMoment( datePart="yyyy", number=arguments.years );
+	}
+
+	/**
+	* Substract
+	*/
+
+	public any function subDays(
+		required numeric days
+	) {
+		return _setMoment( datePart="d", number=( arguments.days * -1 ) );
+	}
+
+	public any function subMonths(
+		required numeric months
+	) {
+		return _setMoment( datePart="m", number=( arguments.months * -1 ) );
+	}
+
+	public any function subYears(
+		required numeric years
+	) {
+		return _setMoment( datePart="yyyy", number=( arguments.years * -1 ) );
+	}
+
+	/**
 	* Format
 	*/
 
 	public string function toDate() {
-		return toString( "yyyy-mm-dd" );
+		return toStr( "yyyy-mm-dd" );
 	}
 
-	public string function toString(
+	public string function toStr(
 		required string mask
 	) {
 		return DateTimeFormat( variables.moment, arguments.mask );
 	}
 
-	public string function toObject() {
+	public string function toObj() {
 		return variables.moment;
 	}
 
