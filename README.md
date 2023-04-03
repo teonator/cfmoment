@@ -46,3 +46,13 @@ Moment( epochDay ).diffInMonths( millenniumDay ); // 360
 Moment( epochDay ).diffInYears( millenniumDay ); // 30
 Moment( epochDay ).diffForHuman( millenniumDay ); // 30 years ago
 ```
+
+For manipulation of the dates:
+```
+var epochDay      = CreateDateTime( 1970, 1, 1 );
+
+Moment( epochDay ).addMonths( 11 ).addDays( 30 ).toDate(); // 1970-12-31
+Moment( epochDay ).subYears( 1 ).subMonths( 5 ).toDate(); // 1968-08-01
+
+```
+
