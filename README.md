@@ -44,15 +44,24 @@ var millenniumDay = CreateDateTime( 2000, 1, 1 );
 Moment( epochDay ).diffInDays( millenniumDay ); // 10957
 Moment( epochDay ).diffInMonths( millenniumDay ); // 360
 Moment( epochDay ).diffInYears( millenniumDay ); // 30
-Moment( epochDay ).diffForHuman( millenniumDay ); // 30 years ago
 ```
 
-For manipulation of the dates:
+To manipulate the dates:
 ```
-var epochDay      = CreateDateTime( 1970, 1, 1 );
+var epochDay = CreateDateTime( 1970, 1, 1 );
 
 Moment( epochDay ).addMonths( 11 ).addDays( 30 ).toDate(); // 1970-12-31
 Moment( epochDay ).subYears( 1 ).subMonths( 5 ).toDate(); // 1968-08-01
 
 ```
+
+For human:
+```
+var epochDay = CreateDateTime( 1970, 1, 1 );
+
+Moment( epochDay ).diffForHuman( CreateDateTime( 2000, 1, 1 ) ); // 30 years ago
+Moment( epochDay ).rangeForHuman( CreateDateTime( 1970, 1, 31 ) ); // 1 - 31 Jan 1970
+Moment( epochDay ).rangeForHuman( CreateDateTime( 1970, 6, 9 ) ); // 1 Jan - 9 Jun 1970
+```
+
 
