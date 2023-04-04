@@ -257,6 +257,33 @@ component accessors=true {
 	}
 
 	/**
+	* Misc
+	*/
+	public string function rangeForHuman(
+		  date   dateTime  = Now()
+		, string separator = "-"
+	) {
+		var mask      = "d mmm yyyy";
+		var startDate = variables.moment;
+		var endDate   = arguments.dateTime;
+
+		if ( this.init( startDate ).isAfter( endDate ) ) {
+			startDate = arguments.dateTime;
+			endDate   = variables.moment;
+		}
+
+		if ( DateFormat( startDate, "yyyy" ) == DateFormat( endDate, "yyyy" ) ) {
+			mask = Replace( mask, "yyyy", "" );
+
+			if ( DateFormat( startDate, "mm" ) == DateFormat( endDate, "mm" ) ) {
+				mask = Replace( mask, "mmm", "" );
+			}
+		}
+
+		return DateFormat( startDate, mask ) & " " & arguments.separator &  " " & DateFormat( endDate, "d mmm yyyy" );
+	}
+
+	/**
 	* Utility
 	*/
 	public any function clone() {
