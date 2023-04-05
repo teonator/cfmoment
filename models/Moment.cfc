@@ -72,6 +72,16 @@ component accessors=true {
 		return this;
 	}
 
+	public any function setNow() {
+		variables.moment = Now();
+
+		return this;
+	}
+
+	public any function today() {
+		return this.setNow();
+	}
+
 	/**
 	* Add
 	*/
@@ -94,6 +104,10 @@ component accessors=true {
 		return _setMoment( datePart="yyyy", number=arguments.years );
 	}
 
+	public any function tomorrow() {
+		return this.addDays( 1 );
+	}
+
 	/**
 	* Substract
 	*/
@@ -114,6 +128,10 @@ component accessors=true {
 		required numeric years
 	) {
 		return _setMoment( datePart="yyyy", number=( arguments.years * -1 ) );
+	}
+
+	public any function yesterday() {
+		return this.subDays( 1 );
 	}
 
 	/**
