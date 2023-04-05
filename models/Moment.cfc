@@ -13,41 +13,35 @@ component accessors=true {
 	public any function day(
 		numeric day
 	) {
-		return IsNumeric( arguments.day ) ? setDay( arguments.day ) : getDay( variables.moment );
+		return IsNumeric( arguments.day ) ? setDay( arguments.day ) : getDay();
 	}
 
 	public any function month(
 		numeric month
 	) {
-		return IsNumeric( arguments.month ) ? setMonth( arguments.month ) : getMonth( variables.moment );
+		return IsNumeric( arguments.month ) ? setMonth( arguments.month ) : getMonth();
 	}
 
 	public any function year(
 		numeric year
 	) {
-		return IsNumeric( arguments.year ) ? setYear( arguments.year ) : getYear( variables.moment );
+		return IsNumeric( arguments.year ) ? setYear( arguments.year ) : getYear();
 	}
 
 	/**
 	* Get
 	*/
 
-	public numeric function getDay(
-		date moment
-	) {
-		return Day( arguments.moment ?: variables.moment );
+	public numeric function getDay() {
+		return Day( variables.moment );
 	}
 
-	public numeric function getMonth(
-		date moment
-	) {
-		return Month( arguments.moment ?: variables.moment );
+	public numeric function getMonth() {
+		return Month( variables.moment );
 	}
 
-	public numeric function getYear(
-		date moment
-	) {
-		return Year( arguments.moment ?: variables.moment );
+	public numeric function getYear() {
+		return Year( variables.moment );
 	}
 
 	/**
