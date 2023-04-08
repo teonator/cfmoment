@@ -240,6 +240,14 @@ component accessors=true {
 		return isLeapYear( variables.moment );
 	}
 
+	public boolean function isWeekday() {
+		return !isWeekend();
+	}
+
+	public boolean function isWeekend() {
+		return ArrayFind( [ 1, 7 ], DayOfWeek( variables.moment ) ) > 0;
+	}
+
 	/**
 	* Difference
 	*/
