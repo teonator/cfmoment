@@ -125,6 +125,12 @@ component accessors=true {
 		return _setMoment( datePart="d", number=arguments.days );
 	}
 
+	public any function addWeeks(
+		required numeric weeks
+	) {
+		return _setMoment( datePart="ww", number=arguments.weeks );
+	}
+
 	public any function addMonths(
 		required numeric months
 	) {
@@ -149,6 +155,12 @@ component accessors=true {
 		required numeric days
 	) {
 		return _setMoment( datePart="d", number=( arguments.days * -1 ) );
+	}
+
+	public any function subWeeks(
+		required numeric weeks
+	) {
+		return _setMoment( datePart="ww", number=( arguments.weeks * -1 ) );
 	}
 
 	public any function subMonths(
