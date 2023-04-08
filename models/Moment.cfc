@@ -251,6 +251,13 @@ component accessors=true {
 		return _getDiff( argumentCollection=arguments, datePart="d" );
 	}
 
+	public numeric function diffInWeeks(
+		  date    dateTime = Now()
+		, boolean absolute = true
+	) {
+		return _getDiff( argumentCollection=arguments, datePart="ww" );
+	}
+
 	public numeric function diffInMonths(
 		  date    dateTime = Now()
 		, boolean absolute = true
