@@ -16,6 +16,12 @@ component accessors=true {
 		return IsNumeric( arguments.day ) ? setDay( arguments.day ) : getDay();
 	}
 
+	public any function week(
+		numeric week
+	) {
+		return IsNumeric( arguments.week ) ? setWeek( arguments.week ) : getWeek();
+	}
+
 	public any function month(
 		numeric month
 	) {
@@ -36,6 +42,10 @@ component accessors=true {
 		return Day( variables.moment );
 	}
 
+	public numeric function getWeek() {
+		return Week( variables.moment );
+	}
+
 	public numeric function getMonth() {
 		return Month( variables.moment );
 	}
@@ -52,6 +62,29 @@ component accessors=true {
 		required numeric day
 	) {
 		variables.moment = CreateDate( this.year(), this.month(), _getDayOfMonth( this.year(), this.month(), arguments.day ) );
+
+		return this;
+	}
+
+	public any function setWeek(
+		required numeric week
+	) {
+		// https://en.wikipedia.org/wiki/ISO_week_date#Calculating_an_ordinal_or_month_date_from_a_week_date
+		var year           = this.year();
+		var daysInCurYear  = DaysInYear( CreateDate( year    , 1, 1 ) );
+		var daysInPrevYear = DaysInYear( CreateDate( year - 1, 1, 1 ) );
+
+		var ordinalDate = ( arguments.week * 7 + 2 ) - ( DayOfWeek( ParseDateTime( "#year#-01-04", "y-M-d") ) + 3 );
+
+		if ( ordinalDate < 1 ) {
+			ordinalDate = ordinalDate + daysInPrevYear;
+			year = year - 1;
+		} else if ( ordinalDate > daysInCurYear ) {
+			ordinalDate = ordinalDate - daysInCurYear;
+			year = year + 1;
+		}
+
+		variables.moment = ParseDateTime( "#year#-#ordinalDate#", "y-D" );
 
 		return this;
 	}
