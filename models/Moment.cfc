@@ -147,6 +147,10 @@ component accessors=true {
 		return this.addDays( 1 );
 	}
 
+	public any function nextWeek() {
+		return this.addWeeks( 1 );
+	}
+
 	/**
 	* Substract
 	*/
@@ -177,6 +181,10 @@ component accessors=true {
 
 	public any function yesterday() {
 		return this.subDays( 1 );
+	}
+
+	public any function lastWeek() {
+		return this.subWeeks( 1 );
 	}
 
 	/**
