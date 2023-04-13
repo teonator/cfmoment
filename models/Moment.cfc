@@ -155,6 +155,10 @@ component accessors=true {
 		return this.addMonths( 1 );
 	}
 
+	public any function nextYear() {
+		return this.addYears( 1 );
+	}
+
 	/**
 	* Substract
 	*/
@@ -193,6 +197,10 @@ component accessors=true {
 
 	public any function lastMonth() {
 		return this.subMonths( 1 );
+	}
+
+	public any function lastYear() {
+		return this.subYears( 1 );
 	}
 
 	/**
