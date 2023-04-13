@@ -208,16 +208,16 @@ component accessors=true {
 	*/
 
 	public string function toDate() {
-		return toStr( "yyyy-mm-dd" );
+		return this.toString( "yyyy-mm-dd" );
 	}
 
-	public string function toStr(
+	public string function toString(
 		required string mask
 	) {
 		return DateTimeFormat( variables.moment, arguments.mask );
 	}
 
-	public string function toObj() {
+	public string function toObject() {
 		return variables.moment;
 	}
 
