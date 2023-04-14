@@ -28,6 +28,12 @@ component accessors=true {
 		return IsNumeric( arguments.month ) ? setMonth( arguments.month ) : getMonth();
 	}
 
+	public any function quarter(
+		numeric quarter
+	) {
+		return IsNumeric( arguments.quarter ) ? setQuarter( arguments.quarter ) : getQuarter();
+	}
+
 	public any function year(
 		numeric year
 	) {
@@ -48,6 +54,10 @@ component accessors=true {
 
 	public numeric function getMonth() {
 		return Month( variables.moment );
+	}
+
+	public numeric function getQuarter() {
+		return Quater( variables.moment );
 	}
 
 	public numeric function getYear() {
@@ -93,6 +103,16 @@ component accessors=true {
 		required numeric month
 	) {
 		variables.moment = CreateDate( this.year(), arguments.month, _getDayOfMonth( this.year(), arguments.month, this.day() ) );
+
+		return this;
+	}
+
+	public any function setQuarter(
+		required numeric quarter
+	) {
+		var month = ( arguments.quarter - 1 ) * 3 + 1;
+
+		variables.moment = CreateDate( this.year(), month, _getDayOfMonth( this.year(), month, this.day() ) );
 
 		return this;
 	}
